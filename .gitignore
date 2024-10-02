@@ -4,5 +4,5 @@ yarn.lock
 node_modules
 .idea
 .vs
-.vitepress/dist
-.vitepress/cache
+**/.vitepress/dist
+**/.vitepress/cache
