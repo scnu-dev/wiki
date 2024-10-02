@@ -1,0 +1,10 @@
+# 当 pnpm-lock.yaml 出现冲突时，将以当前分支为准
+pnpm-lock.yaml merge=ours rebase=ours
+*.ts text eol=lf
+*.js text eol=lf
+*.wxml text eol=lf
+*.yml text eol=lf
+*.json text eol=lf
+*.scss text eol=lf
+*.wxss text eol=lf
+*.css text eol=lf
