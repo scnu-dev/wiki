@@ -1,4 +1,8 @@
 {
+  "name": "dev-wiki",
+  "version": "1.0.0",
+  "description": "",
+  "packageManager": "pnpm@8.15.0",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "prepare": "husky install",
