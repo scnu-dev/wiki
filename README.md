@@ -2,6 +2,7 @@
 
 - 文档 Markdown 根目录： `./docs`
 - 基于 [VitePress](https://vitepress.dev/zh/) 生成
+- Github Pages 地址：https://scnu-dev.github.io/wiki/
 
 ## Quick Start
 
