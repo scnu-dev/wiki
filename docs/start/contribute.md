@@ -3,7 +3,7 @@
 感谢以下同学参与共建：
 
 - [翁行](https://github.com/wengx00)（2021 级）
-- [周炫]()（2022 级）
+- [周炫](https://github.com/kixuan)（2022 级）
 
 :::tip 提示
 参与知识库修订的同学可以把大名和 Github 链接记在上面
