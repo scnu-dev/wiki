@@ -1,6 +1,7 @@
 # 华南师范大学计算机学院项目团队知识库
 
-> 文档 Markdown 根目录： `./docs`
+- 文档 Markdown 根目录： `./docs`
+- 基于 [VitePress](https://vitepress.dev/zh/) 生成
 
 ## Quick Start
 
