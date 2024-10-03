@@ -25,6 +25,8 @@ export default defineConfig({
         text: '前端开发',
         collapsed: false,
         items: [
+          { text: '前端开发环境搭建 - macOS', link: '/frontend/setup-macos' },
+          { text: '前端开发环境搭建 - Windows', link: '/frontend/setup-windows' },
           { text: '浏览器渲染过程和原理', link: '/frontend/browser' },
           { text: 'JS 事件循环机制', link: '/frontend/event-loop' },
           { text: '工程化: JS 包管理器', link: '/frontend/pkg-manager' },
