@@ -7,3 +7,7 @@
 - 后端开发
 - DevOps
 - 网络协议
+
+## 快速索引
+
+- [前端开发环境搭建](../frontend/setup-macos.md)

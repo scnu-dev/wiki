@@ -138,12 +138,13 @@ defaults write com.apple.finder AppleShowAllFiles -boolean true ; killall Finder
 - nvm
 - 微信开发者工具
 - 谷歌浏览器
+- [可选] snipaste（截图工具）
 
 有了 Homebrew，安装这些非常简单
 
 ```bash
 brew install git nvm
-brew install --cask visual-studio-code wechatwebdevtools google-chrome
+brew install --cask visual-studio-code wechatwebdevtools google-chrome snipaste
 ```
 
 除此之外，`nvm` 还需要在 `~/.zshrc` 中加上一些变量配置：
@@ -242,7 +243,13 @@ npm install -g pnpm whistle envinfo
 
 ```bash
 pnpm -v
+w2 --version
+envinfo --system --binaries --browsers
 ```
+
+最后一行命令（`envinfo --system --binaries --browsers`）用于查看当前开发环境
+
+![envinfo](./images/envinfo.png)
 
 ## 6. Git 配置
 
@@ -279,3 +286,12 @@ ssh-keygen -t rsa -C mail@example.com # 将 mail@example.com 换成你注册 Git
 然后只需要将 ~/.ssh/id_rsa.pub 中的内容复制到 Github/Coding 中配置公钥即可
 
 ![SSH-Key](./images/ssh-key.png)
+
+## 小结
+
+经过配置后，开发环境应该已经具备了下面的条件：
+
+- VSCode，配置详见 [VSCode：100 倍研效提升](../devops/vscode.md)
+- git，并做好了相关配置
+- Node.js：通过 `nvm-windows` 管理
+- 全局 npm 包：`pnpm`, `whistle`, `envinfo`

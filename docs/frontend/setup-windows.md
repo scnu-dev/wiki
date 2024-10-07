@@ -26,13 +26,16 @@
 - git：https://git-scm.com/downloads
 - 微信开发者工具：https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html
 - 谷歌浏览器：https://www.google.com/intl/en_hk/chrome/
+- [可选] snipaste（截图工具）：https://zh.snipaste.com/
 
-Windows 下需要去官网下载安装包
+Windows 下需要去官网下载安装包，具体安装步骤详见各自官网。
 
 ## 2. 搭建 Node.js 环境
 
-:::info 信息
-如果你之前已经安装过 `Node.js`，并且没有把握解决安装 nvm 后潜在的冲突问题，则最好要先卸载干净原先的 `Node.js`，包括检查并清理环境变量中关于 `Node.js` 和 `npm` 的配置。
+推荐使用 `nvm-windows` 进行 `Node.js` 版本管理和安装，便于后续切换 `Node.js` 版本。
+
+:::warning 提醒
+如果你之前已经安装过 `Node.js`，并且没有把握解决安装 nvm 后潜在的冲突问题，则最好要**先卸载干净**原先的 `Node.js`，包括检查并清理**环境变量**中关于 `Node.js` 和 `npm` 的配置。
 
 运行下面的指令，如果报错了则说明 `Node.js` 已经不存在了
 
@@ -133,4 +136,87 @@ npm install -g pnpm whistle envinfo
 
 ```bash
 pnpm -v
+w2 --version
+envinfo --system --binaries --browsers
 ```
+
+最后一行命令（`envinfo --system --binaries --browsers`）用于查看当前开发环境
+
+![envinfo](./images/envinfo.png)
+
+## 3. Git 配置
+
+在开始和团队其他同学协作前，需要先对本地的 Git 进行一些配置。
+
+### 3.1 基础信息配置
+
+```bash
+# 设置用户名
+git config --global user.name 你的Github/其他托管平台用户名
+# 设置邮箱
+git config --global user.email 你的Github/其他托管平台注册邮箱
+```
+
+### 3.2 SSH Key
+
+:::info 信息
+如果你已经配置过公私钥对，则可以忽略这一步
+:::
+
+无论是在 Github 还是 Coding 上进行代码协作，都需要在本机生成公私钥，然后在代码远程仓库中配置公钥。
+
+下面介绍生成 RSA 公私钥对的方法，只需执行（将 mail@example.com 换成你注册 Github / Coding 用的邮箱）：
+
+```bash
+ssh-keygen -t rsa -C mail@example.com # 将 mail@example.com 换成你注册 Github/Coding 用的邮箱
+```
+
+一路回车，就可以在 `~/.ssh/` 下看到公私钥对：
+
+- 公钥：id_rsa.pub
+- 私钥：id_rsa
+
+然后只需要将 ~/.ssh/id_rsa.pub 中的内容复制到 Github/Coding 中配置公钥即可
+
+![SSH-Key](./images/ssh-key.png)
+
+### 3.3 换行符切换成 LF
+
+:::info 信息
+
+- 在 `Windows` 中，换行符默认为 `\r\n`
+- 在 `macOS` 中，换行符默认为 `\n`
+
+:::
+
+为了抹平不同操作系统的差异，一般团队内部项目都为使用 `.editorconfig` 和 `.gitattributes` 来限制换行符为 `\n`， Windows 下的开发同学需要对 Git 做一些配置来消除 Git 在 Windows 下 `pull` 或 `clone` 后会自动把换行符换成 `\r\n` 的影响。
+
+下面的配置会让 Git 在提交时自动转换换行符为 `\n`，拉取时不做更改。
+
+```bash
+git config --global core.autocrlf input
+```
+
+## [可选] 美化终端
+
+Windows 下的命令行环境比较不雅，想要改变或折腾终端的同学可以尝试下美化他。
+
+一般可以使用 [Oh-My-Posh](https://ohmyposh.dev/)，打造一个看起来像 `macOS` 的命令行界面。具体配置方法参考[官网](https://ohmyposh.dev/docs/installation/windows)即可。
+
+:::tip 提示
+总的来说，安装和配置步骤大概有这些：
+
+1. 安装 `oh-my-posh`，参考[这里](https://ohmyposh.dev/docs/installation/windows)
+2. 通过 `oh-my-posh` 命令安装字体，参考[这里](https://ohmyposh.dev/docs/installation/fonts)
+3. 挑选和配置你最爱的主题，参考[这里](https://ohmyposh.dev/docs/themes)
+
+:::
+
+## 小结
+
+经过配置后，开发环境应该已经具备了下面的条件：
+
+- VSCode，配置详见 [VSCode：100 倍研效提升](../devops/vscode.md)
+- git，并做好了相关配置
+- Node.js：通过 `nvm-windows` 管理
+- 全局 npm 包：`pnpm`, `whistle`, `envinfo`
