@@ -8,6 +8,7 @@
 - DevOps
 - 网络协议
 
-## 快速索引
+## 索引目录
 
 - [前端开发环境搭建](../frontend/setup-macos.md)
+- [HTTP 代理和抓包](../network/http-proxy.md)
