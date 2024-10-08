@@ -207,6 +207,30 @@ resCors://*
 
 ### 3.6 查看抓包内容
 
+开启 whistle 代理服务器后，浏览器访问 `http://127.0.0.1:8899/`，选择 `Network` 即可看到数据包列表和详情。
+
+![Whistle panel network](images/whistle-panel-2.png)
+
+- Overview：请求总览
+- Inspectors：抓包详情（分为 Request 和 Response）
+
+  **【Request】请求（发包）**
+
+  - Headers：请求头
+  - WebForms：经过格式化的请求内容，包含请求参数和请求体
+  - Body：请求体
+  - JSONView：如果请求体是 JSON，可以在这里看到 JSON 格式化后的请求数据
+  - Cookies：请求携带的 Cookies
+  - Raw：原始 HTTP 报文
+
+  **【Response】响应（回包）**
+
+  - Headers：响应头
+  - Preview：经过格式化后的响应数据（支持预览图片）
+  - Body：响应数据
+  - JSONView：如果响应体是 JSON，可以在这里看到 JSON 格式化后的响应数据
+  - Raw：原始 HTTP 报文
+
 ### 3.7 启用 HTTPS 抓包
 
 到目前为止，我们只具备了代理和抓取 HTTP 流量的能力，而面对 HTTPS 我们束手无策。
@@ -219,7 +243,7 @@ resCors://*
 
 ![Middle attach](./images/middle-attach.png)
 
-回到我们具体的应用场景，其实就是要在 PC 设备和连接代理的移动设备上，都装上并信任 whistle 提供的 CA 证书即可。
+回到我们具体的应用场景，其实就是要在 PC 设备和**连接代理的移动设备**上，都装上并信任 whistle 提供的 CA 证书即可。
 
 解释完原理，安装和信任证书的过程就很自然了，详见[官方指南](https://wproxy.org/whistle/webui/https.html#%E5%AE%89%E8%A3%85%E6%A0%B9%E8%AF%81%E4%B9%A6)
 
