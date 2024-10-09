@@ -31,6 +31,7 @@ export default defineConfig({
           { text: 'JS 事件循环机制', link: '/frontend/event-loop' },
           { text: '工程化: JS 包管理器', link: '/frontend/pkg-manager' },
           { text: '工程化: Monorepo', link: '/frontend/monorepo' },
+          { text: '工程化: 构建工具链', link: '/frontend/toolchain' },
         ]
       },
       {
