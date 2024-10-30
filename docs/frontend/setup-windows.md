@@ -79,9 +79,6 @@ nvm ls                                     ## 列出所有安装的版本
 nvm ls-remote                     ## 列出所有远程服务器的版本（官方node version list）
 nvm current                          ## 显示当前的版本
 
-nvm alias       ## 给不同的版本号添加别名
-nvm unalias                      ## 删除已定义的别名
-
 nvm use [version] [arch] ##切换制定的node版本和位数
 ```
 
@@ -94,8 +91,8 @@ nvm use [version] [arch] ##切换制定的node版本和位数
 ```bash
 # 下载 v20.x 版本
 nvm install 20
-# 将 v20.x 版本作为默认的 Node.js 版本
-nvm alias default 20
+# nvm-windows 暂时不支持 alias
+nvm use 20
 ```
 
 安装成功后，可以查看当前的 `Node.js` 版本

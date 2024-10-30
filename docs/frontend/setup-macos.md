@@ -58,6 +58,51 @@ ZSH_THEME="robbyrussell"
 
 保存修改并退出后，执行 `source ~/.zshrc` 即可使修改后的配置生效。
 
+### 1.4 安装并使用 oh-my-zsh 插件
+
+oh-my-zsh 因为有丰富的插件所以非常好用，打开 ~/.zshrc 找到 `plugins=(...)` 配置项，即为插件配置。这个配置里只需要将插件名列进去即为启用插件，比如：
+
+```bash
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting z extract web-search)
+```
+
+但是其中有些插件并不是 oh-my-zsh 内置的，所以需要我们进行下载：
+
+1. zsh-autosuggestions
+
+   命令行自动提示插件
+
+   ```bash
+   git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-\~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+   ```
+
+2. zsh-syntax-highlighting
+
+   命令行语法高亮插件
+
+   ```bash
+   git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-\~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+   ```
+
+
+3. 已经集成了的插件，直接开启即可
+
+   - extract：无论什么压缩包，直接 `x filename` 即可解压（不用去记 tar 命令奇怪的参数含义了）
+   - z：会记忆你进入过的目录，相当于增强版 cd
+   - git：人如其名
+   - web-search：直接在命令行中进行 Google / Baidu / Bing 搜索，比如 `google 华南师范大学`
+
+下载后，在 ~/.zshrc 中的 `plugins=(...)` 添加配置：
+
+```bash
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting z extract web-search)
+```
+
+保存退出后，`source ~/.zshrc` 即可使修改后的配置生效。
+
+
+
+
 ## 2. 安装 HomeBrew
 
 ### 2.1 下载 Homebrew
@@ -77,10 +122,6 @@ ZSH_THEME="robbyrussell"
 ```bash
 # 查看 brew.git 当前源
 cd "$(brew --repo)" && git remote -v
-# 查看 homebrew-core.git 当前源
-cd "$(brew --repo homebrew/core)" && git remote -v
-# 查看 homebrew-cask.git 当前源
-cd "$(brew --repo homebrew/cask)" && git remote -v
 ```
 
 2. 修改为清华源
@@ -88,10 +129,6 @@ cd "$(brew --repo homebrew/cask)" && git remote -v
 ```bash
 # 修改 brew.git
 git -C "$(brew --repo)" remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git
-# 修改 homebrew-core.git
-git -C "$(brew --repo homebrew/core)" remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git
-# 修改 homebrew-cask.git
-git -C "$(brew --repo homebrew/cask)" remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-cask.git
 ```
 
 ### 2.3 替换 brew bintray 源
@@ -134,8 +171,11 @@ defaults write com.apple.finder AppleShowAllFiles -boolean true ; killall Finder
 总的来说，有这些：
 
 - VSCode
+- iterm2
 - git
 - nvm
+- cmake
+- ninja
 - 微信开发者工具
 - 谷歌浏览器
 - [可选] snipaste（截图工具）
@@ -143,11 +183,13 @@ defaults write com.apple.finder AppleShowAllFiles -boolean true ; killall Finder
 有了 Homebrew，安装这些非常简单
 
 ```bash
-brew install git nvm
-brew install --cask visual-studio-code wechatwebdevtools google-chrome snipaste
+brew install git nvm cmake ninja
+brew install --cask visual-studio-code wechatwebdevtools google-chrome snipaste iterm2
 ```
 
-除此之外，`nvm` 还需要在 `~/.zshrc` 中加上一些变量配置：
+### 4.1 nvm 配置
+
+`nvm` 需要在 `~/.zshrc` 中加上一些变量配置：
 
 ```bash
 vim ~/.zshrc
@@ -163,6 +205,141 @@ export NVM_NODEJS_ORG_MIRROR=http://nodejs.org/dist
 ```bash
 source ~/.zshrc
 ```
+
+### 4.2 vim 配置
+
+不做任何配置的 vim 用起来比较麻烦，可以通过配置 ~/.vimrc 来增强 vim
+
+```bash
+vim ~/.vimrc
+```
+
+在打开的编辑器粘贴以下配置
+
+```vim
+"显示行号，下面这行取消注释就会开启行号显示
+"set nu
+
+"启动时隐去援助提示
+set shortmess=atI
+
+"语法高亮
+syntax on
+
+"使用vim的键盘模式
+set nocompatible
+
+"不需要备份
+set nobackup
+
+"没有保存或文件只读时弹出确认
+set confirm
+
+"鼠标可用
+set mouse=a
+
+"tab缩进
+set tabstop=4
+set shiftwidth=4
+set expandtab
+set smarttab
+
+"文件自动检测外部更改
+set autoread
+
+"c文件自动缩进
+set cindent
+
+"自动对齐
+set autoindent
+
+"智能缩进
+set smartindent
+
+"高亮查找匹配
+set hlsearch
+
+"显示匹配
+set showmatch
+
+"显示标尺，就是在右下角显示光标位置
+set ruler
+
+"去除vi的一致性
+set nocompatible
+
+"设置键盘映射，通过空格设置折叠
+nnoremap <space> @=((foldclosed(line('.')<0)?'zc':'zo'))<CR>
+""""""""""""""""""""""""""""""""""""""""""""""
+"不要闪烁
+set novisualbell
+
+"启动显示状态行
+set laststatus=2
+
+"浅色显示当前行
+autocmd InsertLeave * se nocul
+
+"用浅色高亮当前行
+autocmd InsertEnter * se cul
+
+"显示输入的命令
+set showcmd
+
+"被分割窗口之间显示空白
+set fillchars=vert:/
+set fillchars=stl:/
+set fillchars=stlnc:/
+
+" vundle 环境设置
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+" vundle 管理的插件列表必须位于 vundle#begin() 和 vundle#end() 之间
+"call vundle#begin()
+"Plugin 'VundleVim/Vundle.vim'
+" 插件列表结束
+"call vundle#end()
+filetype plugin indent on
+
+" 配色方案
+"set background=dark
+"colorscheme solarized
+"colorscheme molokai
+"colorscheme phd
+
+" 禁止显示菜单和工具条
+set guioptions-=m
+set guioptions-=T
+
+" 总是显示状态栏
+set laststatus=2
+
+" 禁止折行
+set nowrap
+
+" 设置状态栏主题风格
+let g:Powerline_colorscheme='solarized256'
+
+syntax keyword cppSTLtype initializer_list
+
+" 基于缩进或语法进行代码折叠
+"set foldmethod=indent
+set foldmethod=syntax
+" 启动 vim 时关闭折叠代码
+set nofoldenable
+
+"允许用退格键删除字符
+set backspace=indent,eol,start
+
+"编码设置
+set encoding=utf-8
+
+"共享剪切板
+set clipboard=unnamed
+```
+
+保存并退出即可。
+
 
 ## 5. `Node.js` 和全局 npm 包
 
